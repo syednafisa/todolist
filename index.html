@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peaceful Tasks - Enhanced To-Do List</title>
+    <meta name="description" content="A beautiful, feature-rich to-do list with categories, priorities, and search">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-text">
+                <h1 class="title">Peaceful Tasks</h1>
+                <p class="subtitle" id="taskCount">0 tasks remaining</p>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <svg class="icon sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+                <svg class="icon moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <svg class="icon search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+            </svg>
+            <input 
+                type="text" 
+                id="searchInput" 
+                class="search-input" 
+                placeholder="Search tasks..."
+            >
+        </div>
+
+        <!-- Sort and Filter Controls -->
+        <div class="controls">
+            <div class="sort-dropdown">
+                <label for="sortSelect" class="control-label">Sort by:</label>
+                <select id="sortSelect" class="sort-select">
+                    <option value="date">Date Created</option>
+                    <option value="name">Name (A-Z)</option>
+                    <option value="priority">Priority</option>
+                    <option value="status">Completion Status</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Add Todo Form -->
+        <div class="add-todo-form">
+            <input 
+                type="text" 
+                id="todoInput" 
+                class="todo-input" 
+                placeholder="What would you like to do today?"
+            >
+            
+            <div class="form-controls">
+                <div class="form-row">
+                    <!-- Category Selection -->
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <div class="category-buttons">
+                            <button class="category-btn active" data-category="work">
+                                <span class="category-dot work"></span>
+                                Work
+                            </button>
+                            <button class="category-btn" data-category="personal">
+                                <span class="category-dot personal"></span>
+                                Personal
+                            </button>
+                            <button class="category-btn" data-category="health">
+                                <span class="category-dot health"></span>
+                                Health
+                            </button>
+                            <button class="category-btn" data-category="other">
+                                <span class="category-dot other"></span>
+                                Other
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Priority Selection -->
+                    <div class="form-group">
+                        <label class="form-label">Priority</label>
+                        <div class="priority-buttons">
+                            <button class="priority-btn" data-priority="high">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14"></path>
+                                    <path d="m5 12 7-7 7 7"></path>
+                                </svg>
+                                High
+                            </button>
+                            <button class="priority-btn active" data-priority="medium">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14"></path>
+                                </svg>
+                                Medium
+                            </button>
+                            <button class="priority-btn" data-priority="low">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 19V5"></path>
+                                    <path d="m5 12 7 7 7-7"></path>
+                                </svg>
+                                Low
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="add-button" id="addButton">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5v14"></path>
+                    </svg>
+                    Add Task
+                </button>
+            </div>
+        </div>
+
+        <!-- Status Filter Buttons -->
+        <div class="filters">
+            <button class="filter-button active" data-filter="all">All</button>
+            <button class="filter-button" data-filter="active">Active</button>
+            <button class="filter-button" data-filter="completed">Completed</button>
+        </div>
+
+        <!-- Todo List -->
+        <div class="todo-list" id="todoList">
+            <!-- Todos will be inserted here -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <svg class="empty-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M9 11l3 3L22 4"></path>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+            </svg>
+            <p>Your peaceful space awaits...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
